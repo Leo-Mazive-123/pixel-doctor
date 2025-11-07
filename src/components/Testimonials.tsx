@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 const testimonials = [
   {
     quote:
-      "Pixel Doctor saved my work laptop after a severe water spill. Their quick response and professional repair exceeded my expectations, getting me back to work within 48 hours.",
+      "Pixel Doctor saved my work laptop after a severe water spill. Their quick response and professional repair exceeded my expectations, getting me back to work within 48 hours.I was amazed by how they do their work.",
     name: "Tendai Mapfumo",
     role: "Marketing Manager, Econet Zimbabwe",
   },
@@ -38,10 +38,10 @@ const Testimonials: React.FC = () => {
               style={{ minHeight: "350px" }}
             >
               {/* Quote */}
-              <p className="text-gray-700 text-lg mb-6">"{testimonial.quote}"</p>
+              <p className="text-gray-700 text-lg mb-1">"{testimonial.quote}"</p>
 
               {/* Stars */}
-              <div className="flex mb-4">
+              <div className="flex mb-2">
                 {[...Array(5)].map((_, i) => (
                   <FaStar key={i} className="text-yellow-400 mr-1" />
                 ))}

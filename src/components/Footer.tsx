@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   const [copied, setCopied] = useState<"email" | "phone" | "">("");
@@ -9,10 +10,10 @@ const Footer: React.FC = () => {
   const handleCopy = (text: string, type: "email" | "phone") => {
     navigator.clipboard.writeText(text);
     setCopied(type);
-    setTimeout(() => setCopied(""), 2000); // reset after 2 seconds
+    setTimeout(() => setCopied(""), 2000);
   };
 
-  const scrollOffset = -80; // adjust this to your navbar height
+  const scrollOffset = -80;
 
   return (
     <footer id="footer" className="bg-black text-white py-12">
@@ -26,12 +27,10 @@ const Footer: React.FC = () => {
               Expert laptop and mobile device repair in Harare. Swift, affordable and reliable solutions.
             </p>
             <h3 className="text-xl font-bold mt-2 mb-2">Working Hours</h3>
-            <p className="text-gray-400">
-              Monday - Friday from 8am to 5pm!
-            </p>
+            <p className="text-gray-400">Monday - Friday from 8am to 5pm!</p>
           </div>
 
-          {/* Quick Links (pushed right) */}
+          {/* Quick Links */}
           <div className="md:ml-12">
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -110,10 +109,23 @@ const Footer: React.FC = () => {
                 <span className="text-green-400 ml-2">Copied!</span>
               )}
             </p>
+
+            {/* WhatsApp Icon BELOW Contact Info */}
+            <div className="mt-1">
+              <a
+                href="https://wa.me/263718482174"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-green-400 hover:text-green-500 transition"
+              >
+                <FaWhatsapp className="text-2xl" />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Small screens: brand on top, quick links + contact side by side */}
+        {/* Small screens */}
         <div className="md:hidden flex flex-col gap-8">
           {/* Brand */}
           <div>
@@ -122,15 +134,12 @@ const Footer: React.FC = () => {
               Expert laptop and mobile device repair in Harare. Swift, affordable and reliable solutions.
             </p>
             <h3 className="text-xl font-bold mt-2 mb-2">Working Hours</h3>
-            <p className="text-gray-400">
-              Monday - Friday from 8am to 5pm!
-            </p>
+            <p className="text-gray-400">Monday - Friday from 8am to 5pm!</p>
           </div>
 
-          {/* Quick Links + Contact side by side */}
+          {/* Quick Links + Contact */}
           <div className="flex justify-between">
-            {/* Quick Links */}
-            <div className="">
+            <div>
               <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
@@ -180,35 +189,44 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Contact Info */}
             <div className="mr-10">
               <h3 className="text-xl font-semibold mb-11">Contact Us</h3>
-              <div> <p className="text-gray-400 mb-2">Harare, Zimbabwe</p>
-              <p className="text-gray-400 mb-2">
-                Email:{" "}
-                <span
-                  className="cursor-pointer hover:text-blue-500 underline"
-                  onClick={() => handleCopy("cmanjemanje@gmail.com", "email")}
-                >
-                  cmanjemanje@gmail.com
-                </span>
-                {copied === "email" && (
-                  <span className="text-green-400 ml-2">Copied!</span>
-                )}
-              </p>
-              <p className="text-gray-400 mb-2">
-                Phone:{" "}
-                <span
-                  className="cursor-pointer hover:text-blue-500 underline"
-                  onClick={() => handleCopy("+263718482174", "phone")}
-                >
-                  +263 71 848 2174
-                </span>
-                {copied === "phone" && (
-                  <span className="text-green-400 ml-2">Copied!</span>
-                )}
-              </p>
-            </div>
+              <div>
+                <p className="text-gray-400 mb-2">Harare, Zimbabwe</p>
+                <p className="text-gray-400 mb-2">
+                  Email:{" "}
+                  <span
+                    className="cursor-pointer hover:text-blue-500 underline"
+                    onClick={() => handleCopy("cmanjemanje@gmail.com", "email")}
+                  >
+                    cmanjemanje@gmail.com
+                  </span>
+                  {copied === "email" && <span className="text-green-400 ml-2">Copied!</span>}
+                </p>
+                <p className="text-gray-400 mb-2">
+                  Phone:{" "}
+                  <span
+                    className="cursor-pointer hover:text-blue-500 underline"
+                    onClick={() => handleCopy("+263718482174", "phone")}
+                  >
+                    +263 71 848 2174
+                  </span>
+                  {copied === "phone" && <span className="text-green-400 ml-2">Copied!</span>}
+                </p>
+
+                {/* WhatsApp Icon BELOW Contact Info */}
+                <div className="mt-3">
+                  <a
+                    href="https://wa.me/263718482174"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-green-400 hover:text-green-500 transition"
+                  >
+                    <FaWhatsapp className="text-xl" />
+                    <span>Chat</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

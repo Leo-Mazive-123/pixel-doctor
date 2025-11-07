@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,8 +13,8 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formspreeURL = "https://formspree.io/f/mldoqpyn"; // <-- Replace with your Formspree form ID
-
+    const formspreeURL = "https://formspree.io/f/xanlrrew"; // Replace with your Formspree form ID  
+                       // https://formspree.io/f/mldoqpyn
     try {
       const response = await fetch(formspreeURL, {
         method: "POST",
@@ -26,16 +26,24 @@ const Contact: React.FC = () => {
       });
 
       if (response.ok) {
-        setSubmitted(true);
+        setStatus("success");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("Oops! Something went wrong. Please try again.");
+        setStatus("error");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Oops! Something went wrong. Please try again.");
+      setStatus("error");
     }
   };
+
+  // Automatically clear status after 5 seconds
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => setStatus("idle"), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   return (
     <section id="contact" className="py-16 bg-white">
@@ -46,50 +54,56 @@ const Contact: React.FC = () => {
         </p>
 
         <div className="max-w-3xl mx-auto">
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
-              />
-
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                rows={5}
-                required
-              />
-
-              <button
-                type="submit"
-                className="bg-gray-600 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded transition"
-              >
-                Send Message
-              </button>
-            </form>
-          ) : (
-            <p className="text-center text-green-600 font-semibold">
+          {status === "success" && (
+            <p className="text-center text-green-600 font-semibold mb-6">
               Thank you! Your message has been sent.
             </p>
           )}
+
+          {status === "error" && (
+            <p className="text-center text-red-600 font-semibold mb-6">
+              Oops! Something went wrong. Please try again.
+            </p>
+          )}
+
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            />
+
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              rows={5}
+              required
+            />
+
+            <button
+              type="submit"
+              className="bg-gray-600 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded transition"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
     </section>
