@@ -181,9 +181,9 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="mr-17">
-              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-              <p className="text-gray-400 mb-2">Harare, Zimbabwe</p>
+            <div className="mr-10">
+              <h3 className="text-xl font-semibold mb-11">Contact Us</h3>
+              <div> <p className="text-gray-400 mb-2">Harare, Zimbabwe</p>
               <p className="text-gray-400 mb-2">
                 Email:{" "}
                 <span
@@ -208,6 +208,7 @@ const Footer: React.FC = () => {
                   <span className="text-green-400 ml-2">Copied!</span>
                 )}
               </p>
+            </div>
             </div>
           </div>
         </div>

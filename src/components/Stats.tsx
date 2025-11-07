@@ -6,8 +6,9 @@ const Stats: React.FC = () => {
   const stats = [
     { number: "25+", label: "Happy Customers" },
     { number: "50+", label: "Projects Completed" },
-    { number: "99%", label: "Customer Satisfaction" },
     { number: "10+", label: "Years in Business" },
+    { number: "99%", label: "Customer Satisfaction" },
+    
   ];
 
   return (
