@@ -131,7 +131,9 @@ const Footer: React.FC = () => {
         <div className="md:hidden flex flex-col gap-8">
           {/* Brand */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">Pixel Doctor</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Pixel <span className="text-red-500">Doctor</span>
+            </h2>
             <p className="text-gray-400">
               Expert laptop and mobile device repair in Harare. Swift, affordable and reliable solutions.
             </p>
