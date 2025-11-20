@@ -22,7 +22,9 @@ const Footer: React.FC = () => {
         <div className="hidden md:grid grid-cols-3 gap-8">
           {/* Brand & Description */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">Pixel Doctor</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Pixel <span className="text-red-500">Doctor</span>
+            </h2>
             <p className="text-gray-400">
               Expert laptop and mobile device repair in Harare. Swift, affordable and reliable solutions.
             </p>
@@ -233,7 +235,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="mt-12 border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} Pixel Doctor. All rights reserved. Developed by Leo T. Mazive
+       &copy; {new Date().getFullYear()} Pixel <span className="text-red-500">Doctor</span>. All rights reserved. Developed by Leo T. Mazive
       </div>
     </footer>
   );
